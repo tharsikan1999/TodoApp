@@ -1,24 +1,28 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomePage from "./components/HomePage";
 import TaskList from "./components/TaskList";
-import AddTask from "./components/AddTask";
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Todo App</Text>
-      <TaskList />
-      <AddTask />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={HomePage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TaskList"
+          component={TaskList}
+          options={{ title: "Your Tasks" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export default App;

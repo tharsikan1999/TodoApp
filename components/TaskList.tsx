@@ -8,6 +8,7 @@ import {
   Alert,
 } from "react-native";
 import useTodoStore from "../store/userSlice";
+import AddTask from "./AddTask";
 
 const TaskList = () => {
   const { tasks, deleteTask, editTask, toggleTaskCompletion } = useTodoStore(
@@ -87,6 +88,7 @@ const TaskList = () => {
           }
         />
       )}
+      <AddTask />
     </View>
   );
 };
