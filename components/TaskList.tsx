@@ -7,14 +7,17 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import useTodoStore from "./store";
+import useTodoStore from "../store/userSlice";
 
 const TaskList = () => {
-  const { tasks, deleteTask, editTask } = useTodoStore((state) => ({
-    tasks: state.tasks,
-    deleteTask: state.deleteTask,
-    editTask: state.editTask,
-  }));
+  const { tasks, deleteTask, editTask, toggleTaskCompletion } = useTodoStore(
+    (state) => ({
+      tasks: state.tasks,
+      deleteTask: state.deleteTask,
+      editTask: state.editTask,
+      toggleTaskCompletion: state.toggleTaskCompletion,
+    })
+  );
 
   const handleDelete = (id: string) => {
     Alert.alert("Delete Task", "Are you sure you want to delete this task?", [
@@ -46,6 +49,10 @@ const TaskList = () => {
     );
   };
 
+  const handleToggleCompletion = (id: string) => {
+    toggleTaskCompletion(id);
+  };
+
   return (
     <View style={styles.container}>
       {tasks.length === 0 ? (
@@ -58,7 +65,8 @@ const TaskList = () => {
             <View style={styles.taskContainer}>
               <TouchableOpacity
                 style={styles.taskItem}
-                onPress={() => handleEdit(item.id, item.text)}
+                onPress={() => handleToggleCompletion(item.id)}
+                onLongPress={() => handleEdit(item.id, item.text)}
               >
                 <Text
                   style={item.completed ? styles.completed : styles.pending}

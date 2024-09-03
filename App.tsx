@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import TaskList from "./TaskList";
-import AddTask from "./AddTask";
+import TaskList from "./components/TaskList";
+import AddTask from "./components/AddTask";
 
 export default function App() {
   return (

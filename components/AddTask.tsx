@@ -9,7 +9,7 @@ import {
   Text,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import useTodoStore from "./store";
+import useTodoStore from "../store/userSlice";
 
 const AddTask = () => {
   const [taskDescription, setTaskDescription] = useState("");
